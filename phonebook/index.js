@@ -69,6 +69,11 @@ const generateId = () => {
 }
 
 app.post('/api/persons', (request, response) => {
+  app.use(morgan(':method :url :body'))  
+  morgan.token('body', req => {
+    return JSON.stringify(req.body)
+  })
+      
   const body = request.body
   console.log("body:", body)
   if (!body.name || !body.number) {
