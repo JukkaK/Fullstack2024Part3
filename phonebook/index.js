@@ -69,6 +69,16 @@ app.get('/api/info', (request, response) => {
 //     response.json(note)
 //   })
 
+app.get('/api/persons/:id', (request, response) => {
+    const id = Number(request.params.id)
+    const person = persons.find(person => person.id === id)
+    if (person != null) {
+      response.json(person)
+    } else {
+      response.status(404).end()
+    }    
+  })
+
 // app.delete('/api/notes/:id', (request, response) => {
 //   const id = Number(request.params.id)
 //   notes = notes.filter(note => note.id !== id)
