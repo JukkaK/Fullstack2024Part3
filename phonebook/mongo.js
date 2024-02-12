@@ -11,7 +11,7 @@ if (process.argv.length<3) {
 const password = process.argv[2]
 
 const url =
-  `mongodb+srv://fullstack:${password}@fullstack.girujrq.mongodb.net/?retryWrites=true&w=majority`
+  `mongodb+srv://fullstack:${password}@fullstack.girujrq.mongodb.net/personsApp?retryWrites=true&w=majority`
 
 mongoose.set('strictQuery',false)
 
