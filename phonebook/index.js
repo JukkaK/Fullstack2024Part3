@@ -62,6 +62,10 @@ app.get('/api/persons/:id', (request, response, next) => {
       }
     })
     .catch(error => next(error))
+    // .catch(error => {
+    //   console.log(error)
+    //   response.status(400).send({ error: 'malformatted id' })
+    // })
 })
 
 app.put('/api/persons/:id', (req, res, next) => {
@@ -87,6 +91,11 @@ app.delete('/api/persons/:id', (req, res, next) => {
 
 app.post('/api/persons', (req, res, next) => {
   const body = req.body
+  if (!body.name) {
+    return res.status(400).json({
+      error: 'missing: name'
+    })
+  }
   const person = new Person({
     name: body.name,
     number: body.number
