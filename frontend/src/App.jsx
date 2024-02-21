@@ -69,6 +69,10 @@ const App = () => {
             setNewName('')
             setNewNumber('')
           })
+          .catch(error => {
+            console.log(error.response.data)
+            setUpdateMessage(error.response.data.error)
+          })
         setUpdateMessage(`Added ${newName}`)
       }
 
