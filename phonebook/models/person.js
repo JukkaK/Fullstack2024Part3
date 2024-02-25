@@ -8,6 +8,8 @@ console.log('connecting to', url)
 
 mongoose.connect(url)
 
+// Trying out suppressing, much more fun than just outputting the result or something
+// eslint-disable-next-line no-unused-vars
   .then(result => {
     console.log('connected to MongoDB')
   })
@@ -16,21 +18,21 @@ mongoose.connect(url)
   })
 
 const personSchema = new mongoose.Schema({
-name: {
-  type: String,
-  minlength: 3,
-  required: true
-},
-number: {
-  type: String,
-  validate: {
-  validator: function(v) {    
-    return /^\d{2,3}-\d{4,}$/.test(v);
+  name: {
+    type: String,
+    minlength: 3,
+    required: true
   },
-  message: props => `${props.value} is not a valid phone number!`
-},
-required: [true, "User phone number required"]
-}
+  number: {
+    type: String,
+    validate: {
+      validator: function(v) {    
+        return /^\d{2,3}-\d{4,}$/.test(v)
+      },
+      message: props => `${props.value} is not a valid phone number!`
+    },
+    required: [true, 'User phone number required']
+  }
 })
 
 personSchema.set('toJSON', {
